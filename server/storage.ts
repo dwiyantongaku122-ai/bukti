@@ -5,7 +5,7 @@ import {
   type Settings, type InsertSettings,
   type Game, type InsertGame,
   type SiteButton, type InsertButton
-} from "@shared/schema";
+} from "../shared/schema";
 import { eq, asc } from "drizzle-orm";
 
 export interface IStorage {
