@@ -30,6 +30,38 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    // 🔥 TAMBAHKAN INI: Split bundle besar jadi chunk lebih kecil
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            // Pisahkan library besar ke chunk terpisah
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('antd') || id.includes('antd-icons')) {
+              return 'antd-vendor';
+            }
+            if (id.includes('recharts')) {
+              return 'charts-vendor';
+            }
+            if (id.includes('zod')) {
+              return 'zod-vendor';
+            }
+            if (id.includes('axios')) {
+              return 'axios-vendor';
+            }
+            if (id.includes('date-fns')) {
+              return 'date-fns-vendor';
+            }
+            // Pisahkan library lainnya ke chunk vendor
+            return 'vendor';
+          }
+        }
+      }
+    },
+    // 🔥 TAMBAHKAN INI: Naikkan limit warning chunk size
+    chunkSizeWarningLimit: 1000,
   },
   server: {
     fs: {
