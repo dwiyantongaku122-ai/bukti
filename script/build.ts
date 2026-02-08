@@ -2,6 +2,11 @@ import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
 import { rm, readFile } from "fs/promises";
 import path from "path";
+import { fileURLToPath } from "url"; // 🔑 Import ini untuk ganti __dirname
+
+// 🔥 Dapatkan __dirname di ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
