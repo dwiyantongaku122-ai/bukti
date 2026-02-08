@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
-import { api } from "@shared/routes";
+import * as schema from "@shared/schema";
 
 const { Pool } = pg;
 
