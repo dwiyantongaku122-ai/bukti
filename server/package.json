@@ -2,7 +2,7 @@
   "name": "server",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc",          // atau "vite build" jika pakai Vite
     "start": "node dist/index.js"
   },
   "dependencies": {
