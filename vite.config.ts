@@ -5,21 +5,6 @@ import path from "path";
 export default defineConfig({
   plugins: [
     react(),
-    // 🔥 Plugin Replit hanya untuk development di Replit
-    // 🔥 Tidak di-load di production (Render)
-    ...(process.env.REPL_ID !== undefined && process.env.NODE_ENV !== "production"
-      ? [
-          await import("@replit/vite-plugin-runtime-error-modal").then((m) =>
-            m.default(),
-          ),
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-          await import("@replit/vite-plugin-dev-banner").then((m) =>
-            m.devBanner(),
-          ),
-        ]
-      : []),
   ],
   resolve: {
     alias: {
